@@ -6,6 +6,7 @@ const ProductList = () => {
   const { onToggleButton, tg } = useTelegram();
 
   useEffect(() => {
+    tg.MainButton.setText("➡️ Turpināt");
     tg.MainButton.onClick(() => {
         navigate('/form')
     })
