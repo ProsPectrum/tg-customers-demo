@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import ProductItem from '../ProductItem/ProductItem'
 import './ProductList.css'
 
-products = [
+const products = [
   {id: 1, title: 'ASPIRE GOTEK X', price: 15, description: 'RED'},
   {id: 2, title: 'ASPIRE GOTEK X', price: 15, description: 'BLUE'},
   {id: 3, title: 'ASPIRE GOTEK X', price: 15, description: 'PURPLE'},
