@@ -5,12 +5,12 @@ import ProductItem from '../ProductItem/ProductItem'
 import './ProductList.css'
 
 const products = [
-  {id: 1, title: 'ASPIRE GOTEK X', price: 15, description: 'RED'},
-  {id: 2, title: 'ASPIRE GOTEK X', price: 15, description: 'BLUE'},
-  {id: 3, title: 'ASPIRE GOTEK X', price: 15, description: 'PURPLE'},
-  {id: 4, title: 'ASPIRE GOTEK X', price: 15, description: 'YELLOW'},
-  {id: 5, title: 'ASPIRE GOTEK X', price: 15, description: 'GREEN'},
-  {id: 6, title: 'ASPIRE GOTEK X', price: 15, description: 'BLACK'}
+  {id: 1, title: 'ASPIRE GOTEK X', price: 15, description: 'RED', image: '../images/red-vape.png'},
+  {id: 2, title: 'ASPIRE GOTEK X', price: 15, description: 'BLUE', image: '../images/blue-vape.png'},
+  {id: 3, title: 'ASPIRE GOTEK X', price: 15, description: 'PURPLE', image: '../images/purple-vape.png'},
+  {id: 4, title: 'ASPIRE GOTEK X', price: 15, description: 'YELLOW', image: '../images/yellow-vape.png'},
+  {id: 5, title: 'ASPIRE GOTEK X', price: 15, description: 'GREEN', image: '../images/green-vape.png'},
+  {id: 6, title: 'ASPIRE GOTEK X', price: 15, description: 'BLACK', image: '../images/black-vape.png'}
 ]
 
 const getTotalPrice = (cart = []) => {
