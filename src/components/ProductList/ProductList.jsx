@@ -29,14 +29,12 @@ const ProductList = () => {
       const existingItem = prevCart.find(item => item.productId === product.id);
   
       if (existingItem) {
-        // обновляем количество
         return prevCart.map(item =>
           item.productId === product.id
             ? { ...item, pieces: item.pieces + 1 }
             : item
         );
       } else {
-        // добавляем новый товар
         return [...prevCart, { productId: product.id, pieces: 1 }];
       }
     });
@@ -44,18 +42,14 @@ const ProductList = () => {
     if (cart.length > 0) {
       tg.MainButton.show();
       tg.MainButton.setText(`Uz grozu ${getTotalPrice(cart)}€`);
+      tg.MainButton.onClick(() => {
+        navigate('/form')
+    });
     }
     else {
       tg.MainButton.hide();
     }
   }
-
-  useEffect(() => {
-    tg.MainButton.setText("Turpināt");
-    tg.MainButton.onClick(() => {
-        navigate('/form')
-    });
-  }, [])
 
   return (
     <>
@@ -68,4 +62,4 @@ const ProductList = () => {
   )
 }
 
-export default ProductList
+export default ProductList;
