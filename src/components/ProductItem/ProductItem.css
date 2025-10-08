@@ -1,6 +1,7 @@
 .product {
     display: flex;
     flex-direction: column;
+    align-items: center;
     border: 1px solid var(--tg-theme-button-color);
     padding: 15px;
 }
@@ -10,7 +11,7 @@
     background-color: lightgray;
     height: 100px;
     margin: 0 auto;
-    background: var(--tg-theme-button-color);
+    /* background: var(--tg-theme-button-color); */
 }
 
 .description {
@@ -18,5 +19,5 @@
 }
 
 .add-bth {
-    width: 100%;
+    width: 80%;
 }
