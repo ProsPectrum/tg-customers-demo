@@ -50,7 +50,13 @@ const ProductList = () => {
             : item
         );
       }
-      return [...prevCart, { productId: product.id, productPrice: product.price, pieces: 1 }];
+      return [...prevCart, 
+        { productId: product.id,
+         productPrice: product.price, 
+         productTitle: product.title,
+         productDescription: product.description,
+         pieces: 1 
+        }];
     });
   }
 
