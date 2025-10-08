@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useTelegram } from '../../hooks/useTelegram'
 import { useNavigate } from 'react-router-dom'
 import ProductItem from '../ProductItem/ProductItem'
@@ -20,43 +20,46 @@ const getTotalPrice = (cart = []) => {
 }
 
 const ProductList = () => {
-  const { cart, setCart } = useState();
+  const [cart, setCart] = useState([]);
   const { tg } = useTelegram();
   const navigate = useNavigate();
+
+  const totalPrice = useMemo(() => getTotalPrice(cart), [cart]);
+
+  useEffect(() => {
+    if (!tg) return;
+    if (cart.length > 0) {
+      tg.MainButton.show();
+      tg.MainButton.setText(`Uz grozu ${totalPrice}€`);
+      tg.MainButton.onClick(() => {
+        navigate('/form')
+      });
+    } else {
+      tg.MainButton.hide();
+      tg.MainButton.offClick && tg.MainButton.offClick(() => {});
+    }
+  }, [cart, totalPrice, tg, navigate]);
 
   const onAdd = (product) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(item => item.productId === product.id);
-  
       if (existingItem) {
         return prevCart.map(item =>
           item.productId === product.id
             ? { ...item, pieces: item.pieces + 1 }
             : item
         );
-      } else {
-        return [...prevCart, { productId: product.id, pieces: 1 }];
       }
+      return [...prevCart, { productId: product.id, pieces: 1 }];
     });
-
-    if (cart.length > 0) {
-      tg.MainButton.show();
-      tg.MainButton.setText(`Uz grozu ${getTotalPrice(cart)}€`);
-      tg.MainButton.onClick(() => {
-        navigate('/form')
-    });
-    }
-    else {
-      tg.MainButton.hide();
-    }
   }
 
   return (
     <>
       <div className='list'>
-        {products.map(item => {
-          <ProductItem key={item.id} product={item} onAdd={onAdd} className={'item'}/>
-        })}
+        {products.map(item => (
+          <ProductItem key={item.id} product={item} onAdd={onAdd} className={'item'} />
+        ))}
       </div>
     </>
   )
