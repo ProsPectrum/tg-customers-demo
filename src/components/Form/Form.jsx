@@ -9,6 +9,7 @@ const Form = () => {
   const { tg, onClose } = useTelegram();
 
   const location = useLocation();
+  const userCart = location.state?.userCart || [];
 
   const [deliveryTime, setDeliveryTime] = useState('1');
   const [paymentType, setPaymentType] = useState('1');
@@ -40,8 +41,17 @@ const Form = () => {
 
   return (
     <div className="form">
+        <h3>Tavs iepirkumu grozs:</h3>
         <div>
-          {location.userCart}
+          {userCart.length === 0 ? (
+            <div>Tavs grozs ir tukšs</div>
+          ) : (
+            userCart.map(item => (
+              <div key={item.productId}>
+                Prece #{item.title} — {item.pieces} gab. × {item.productPrice}€
+              </div>
+            ))
+          )}
         </div>
         <h3>Ievadiet piegādes datus</h3>
         <select className="select" value={paymentType} onChange={onChangePaymentType}>

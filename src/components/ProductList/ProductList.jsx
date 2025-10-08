@@ -32,7 +32,7 @@ const ProductList = () => {
       tg.MainButton.show();
       tg.MainButton.setText(`Uz grozu ${totalPrice}€`);
       tg.MainButton.onClick(() => {
-        navigate('/form', {userCart: cart})
+        navigate('/form', { state: { userCart: cart } })
       });
     } else {
       tg.MainButton.hide();
