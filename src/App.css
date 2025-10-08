@@ -2,9 +2,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'OpenSans';
 }
 
 body {
     background-color: var(--tg-theme-bg-color);
     color: var(--tg-theme-text-color);
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src: local('OpenSans'), url('./fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'OpenSans-Light';
+    src: local('OpenSans-Light'), url('./fonts/OpenSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'OpenSans-Bold';
+    src: local('OpenSans-Bold'), url('./fonts/OpenSans-Bold.ttf') format('truetype');
 }
