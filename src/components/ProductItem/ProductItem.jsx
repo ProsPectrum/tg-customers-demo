@@ -13,14 +13,14 @@ const ProductItem = ({product, className, onAdd}) => {
     return (
         <div className={"product "+ className}>
             <div className="img">
-                <img src={product.image} alt="" />
+                <img style={{width: 'auto', height: "100%"}} src={product.image} alt="" />
             </div>
             <div className="title">{product.title}</div>
-            <div className="description">{product.description}</div>
+            {/* <div className="description">{product.description}</div> */}
             <div className="price">{product.price}€</div>
-            <Button className={'add-bth'} onClick={onAddHandler}>
+            <button className={'add-bth'} onClick={onAddHandler}>
                 PIEVIENOT
-            </Button>
+            </button>
         </div>
     )
 }

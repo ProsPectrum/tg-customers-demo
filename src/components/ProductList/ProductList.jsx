@@ -4,13 +4,20 @@ import { useNavigate } from 'react-router-dom'
 import ProductItem from '../ProductItem/ProductItem'
 import './ProductList.css'
 
+import redVape from '../../images/red-vape.png'
+import blueVape from '../../images/blue-vape.png'
+import purpleVape from '../../images/purple-vape.png'
+import yellowVape from '../../images/yellow-vape.png'
+import greenVape from '../../images/green-vape.png'
+import blackVape from '../../images/black-vape.png'
+
 const products = [
-  {id: 1, title: 'ASPIRE GOTEK X', price: 15, description: 'RED', image: '../images/red-vape.png'},
-  {id: 2, title: 'ASPIRE GOTEK X', price: 15, description: 'BLUE', image: '../images/blue-vape.png'},
-  {id: 3, title: 'ASPIRE GOTEK X', price: 15, description: 'PURPLE', image: '../images/purple-vape.png'},
-  {id: 4, title: 'ASPIRE GOTEK X', price: 15, description: 'YELLOW', image: '../images/yellow-vape.png'},
-  {id: 5, title: 'ASPIRE GOTEK X', price: 15, description: 'GREEN', image: '../images/green-vape.png'},
-  {id: 6, title: 'ASPIRE GOTEK X', price: 15, description: 'BLACK', image: '../images/black-vape.png'}
+  {id: 1, title: 'ASPIRE GOTEK X', price: 15, description: 'RED', image: redVape},
+  {id: 2, title: 'ASPIRE GOTEK X', price: 15, description: 'BLUE', image: blueVape},
+  {id: 3, title: 'ASPIRE GOTEK X', price: 15, description: 'PURPLE', image: purpleVape},
+  {id: 4, title: 'ASPIRE GOTEK X', price: 15, description: 'YELLOW', image: yellowVape},
+  {id: 5, title: 'ASPIRE GOTEK X', price: 15, description: 'GREEN', image: greenVape},
+  {id: 6, title: 'ASPIRE GOTEK X', price: 15, description: 'BLACK', image: blackVape}
 ]
 
 const getTotalPrice = (cart = []) => {

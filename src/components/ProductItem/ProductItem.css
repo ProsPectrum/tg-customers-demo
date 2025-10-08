@@ -6,11 +6,12 @@
 }
 
 .img {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    background-color: lightgray;
     height: 100px;
     margin: 0 auto;
-    background: var(--tg-theme-button-color);
+    /* background: var(--tg-theme-button-color); */
 }
 
 .description {
@@ -19,4 +20,9 @@
 
 .add-bth {
     width: 80%;
+    color: #fff;
+    padding: 10px 15px;
+    background-color: var(--tg-theme-button-color);
+    border: none;
+    border-radius: 20px;
 }
