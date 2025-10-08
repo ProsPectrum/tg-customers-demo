@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react'
 import './Form.css'
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTelegram } from '../../hooks/useTelegram';
 import '../Button/Button.css';
 
 const Form = () => {
   const { tg, onClose } = useTelegram();
+
+  const location = useLocation();
 
   const [deliveryTime, setDeliveryTime] = useState('1');
   const [paymentType, setPaymentType] = useState('1');
@@ -37,7 +40,10 @@ const Form = () => {
 
   return (
     <div className="form">
-        <h3>Ievadiet savus datus</h3>
+        <div>
+          {location.userCart}
+        </div>
+        <h3>Ievadiet piegādes datus</h3>
         <select className="select" value={paymentType} onChange={onChangePaymentType}>
             <option value="1" disabled>Maksājuma veids</option>
             <option value="2">Maksājums skaidrā tikšanās brīdī</option>
