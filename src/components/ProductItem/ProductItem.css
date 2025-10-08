@@ -14,6 +14,10 @@
     /* background: var(--tg-theme-button-color); */
 }
 
+.title, .description, .price {
+    margin-top: 5px;
+}
+
 .description {
     font-size: 0.8em;
 }
@@ -22,6 +26,7 @@
     width: 80%;
     color: #fff;
     padding: 10px 15px;
+    font-family: 'OpenSans-Bold';
     background-color: var(--tg-theme-button-color);
     border: none;
     border-radius: 20px;
