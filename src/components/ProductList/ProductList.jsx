@@ -15,7 +15,7 @@ const products = [
 
 const getTotalPrice = (cart = []) => {
   return cart.reduce((sum, item) => {
-    return sum += item.price
+    return sum += item.productPrice * item.pieces
   }, 0);
 }
 
@@ -50,7 +50,7 @@ const ProductList = () => {
             : item
         );
       }
-      return [...prevCart, { productId: product.id, pieces: 1 }];
+      return [...prevCart, { productId: product.id, productPrice: product.price, pieces: 1 }];
     });
   }
 
