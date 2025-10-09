@@ -24,8 +24,8 @@
     height: 22px;
     padding: 0 6px;
     border-radius: 11px;
-    background: #FFC107;
-    color: #000;
+    background: var(--tg-theme-button-color);;
+    color: #fff;
     font-size: 12px;
     font-weight: 700;
     display: flex;

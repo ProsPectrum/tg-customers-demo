@@ -26,7 +26,7 @@ const ProductItem = ({product, className, pieces = 0, onAdd, onReduce}) => {
             <div className="title">{product.title}</div>
             {/* <div className="description">{product.description}</div> */}
             <div className="price">{product.price}€</div>
-            {pieces <= 1 ? (
+            {pieces === 0 ? (
                 <button className={'add-bth'} onClick={onAddHandler}>
                     PIEVIENOT
                 </button>
