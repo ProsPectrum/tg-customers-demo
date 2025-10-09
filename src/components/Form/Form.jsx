@@ -48,7 +48,7 @@ const Form = () => {
           ) : (
             userCart.map(item => (
               <div key={item.productId}>
-                {item.productTitle} | {item.productDescription} — {item.pieces} gab. × {item.productPrice*item.pieces}€
+                {item.productTitle} | {item.productDescription} — {item.pieces} gab. {item.productPrice*item.pieces}€
               </div>
             ))
           )}

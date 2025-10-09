@@ -38,7 +38,7 @@
     font-size: 0.8em;
 }
 
-.add-bth {
+.add-btn {
     width: 80%;
     color: #fff;
     padding: 10px 15px;
@@ -61,5 +61,5 @@
     font-size: 18px;
     font-weight: 700;
 }
-.qty-btn.minus { background: #000; }
+.qty-btn.minus { background: #fff; color: #000 }
 .qty-btn.plus { background: var(--tg-theme-button-color); }
