@@ -3,15 +3,13 @@ import './Header.css'
 import Button from '../Button/Button'
 import { useTelegram } from '../../hooks/useTelegram'
 
+import Logo from '../../../public/ape-logo.png'
+
 const Header = () => {
-  const { user, onClose } = useTelegram();
 
   return (
     <div className={"header"}>
-        <Button onClick={onClose}>Aizvērt</Button>
-        <span className="username">
-            {user?.username}
-        </span>
+        <img src={Logo} alt="" style={{width: '140px', height: "auto"}} />
     </div>
   )
 }

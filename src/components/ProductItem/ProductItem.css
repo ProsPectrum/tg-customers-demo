@@ -3,7 +3,8 @@
     flex-direction: column;
     gap: 5px;
     align-items: center;
-    padding: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .img {
@@ -39,13 +40,13 @@
 }
 
 .add-btn {
-    width: 80%;
-    color: #fff;
-    padding: 10px 15px;
+    width: 65%;
+    color: #000;
+    padding: 7px 7px;
     font-family: 'OpenSans-Bold';
-    background-color: var(--tg-theme-button-color);
+    background-color: #fff;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
 }
 
 .qty-controls {
