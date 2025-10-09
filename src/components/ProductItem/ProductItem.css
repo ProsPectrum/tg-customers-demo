@@ -15,6 +15,25 @@
     /* background: var(--tg-theme-button-color); */
 }
 
+.img { position: relative; }
+.badge {
+    position: absolute;
+    top: -6px;
+    right: 10px;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: 11px;
+    background: #FFC107;
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
 .description {
     font-size: 0.8em;
 }
@@ -28,3 +47,19 @@
     border: none;
     border-radius: 20px;
 }
+
+.qty-controls {
+    display: flex;
+    gap: 10px;
+}
+.qty-btn {
+    width: 44px;
+    height: 36px;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+}
+.qty-btn.minus { background: #000; }
+.qty-btn.plus { background: var(--tg-theme-button-color); }

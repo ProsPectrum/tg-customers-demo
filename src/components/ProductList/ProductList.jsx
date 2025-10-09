@@ -67,12 +67,38 @@ const ProductList = () => {
     });
   }
 
+  const onReduce = (product) => {
+    setCart(prevCart => {
+      const existingItem = prevCart.find(item => item.productId === product.id);
+      if (!existingItem) return prevCart;
+      if (existingItem.pieces <= 1) {
+        return prevCart.filter(item => item.productId !== product.id);
+      }
+      return prevCart.map(item =>
+        item.productId === product.id
+          ? { ...item, pieces: item.pieces - 1 }
+          : item
+      );
+    });
+  }
+
   return (
     <>
       <div className='list'>
-        {products.map(item => (
-          <ProductItem key={item.id} product={item} onAdd={onAdd} className={'item'} />
-        ))}
+        {products.map(item => {
+          const matched = cart.find(c => c.productId === item.id);
+          const pieces = matched ? matched.pieces : 0;
+          return (
+            <ProductItem 
+              key={item.id}
+              product={item}
+              pieces={pieces}
+              onAdd={onAdd}
+              onReduce={onReduce}
+              className={'item'}
+            />
+          );
+        })}
       </div>
     </>
   )
