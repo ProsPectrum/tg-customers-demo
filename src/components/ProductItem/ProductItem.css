@@ -25,8 +25,8 @@
     height: 22px;
     padding: 0 6px;
     border-radius: 11px;
-    background: var(--tg-theme-button-color);;
-    color: #fff;
+    background: #fff;
+    color: #000;
     font-size: 12px;
     font-weight: 700;
     display: flex;
@@ -65,7 +65,7 @@
     transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease, background-color 0.08s ease;
 }
 .qty-btn.minus { background: #fff; color: #000; border: 1px solid rgba(0,0,0,0.1) }
-.qty-btn.plus { background: var(--tg-theme-button-color); }
+.qty-btn.plus { background: #000; border: 1px solid #fff; }
 
 /* Press/active feedback */
 .qty-btn:active {
