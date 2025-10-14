@@ -6,6 +6,8 @@ import './ProductList.css'
 
 import { vapeProducts, cartridgeProducts, liquidProducts } from '../../data/products'
 import { vapeUsageInstructions, vapeCharacteristics, vapeContents } from '../../data/products'
+import { cartridgeUsageInstructions, cartirdgeCharacteristics, cartridgeContents } from '../../data/products'
+import { liquidContents } from '../../data/products'
 
 const getTotalPrice = (cart = []) => {
   return cart.reduce((sum, item) => {
@@ -77,7 +79,7 @@ const ProductList = () => {
           className={'tab ' + (currentTab === 'vape' ? 'active' : '')}
           onClick={() => setCurrentTab('vape')}
           >
-            Ierīces
+            E-cigaretes
         </button>
         <button 
           className={'tab ' + (currentTab === 'cartridge' ? 'active' : '')}
@@ -120,9 +122,9 @@ const ProductList = () => {
               key={item.id}
               product={item}
               pieces={pieces}
-              usageInstructions={vapeUsageInstructions}
-              characteristics={vapeCharacteristics}
-              contents={vapeContents}
+              usageInstructions={cartridgeUsageInstructions}
+              characteristics={cartirdgeCharacteristics}
+              contents={cartridgeContents}
               onAdd={onAdd}
               onReduce={onReduce}
               className={'item'}
@@ -138,9 +140,7 @@ const ProductList = () => {
               key={item.id}
               product={item}
               pieces={pieces}
-              usageInstructions={vapeUsageInstructions}
-              characteristics={vapeCharacteristics}
-              contents={vapeContents}
+              contents={liquidContents}
               onAdd={onAdd}
               onReduce={onReduce}
               className={'item'}

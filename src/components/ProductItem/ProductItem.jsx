@@ -20,6 +20,8 @@ const ProductItem = ({product, className, pieces = 0, onAdd, onReduce, usageInst
     const openInfo = () => {
         navigate('/info', { state: {
             image: product.image,
+            description: product.description,
+            title: product.title,
             usageInstructions,
             characteristics,
             contents

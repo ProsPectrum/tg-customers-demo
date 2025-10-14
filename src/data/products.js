@@ -8,12 +8,12 @@ import pod from '../images/pod.png'
 import liquid from '../images/liquid.png'
 
 export const vapeProducts = [
-  {id: 'vape-1', title: 'ASPIRE GOTEK X', price: 15, description: 'RED', image: redVape},
-  {id: 'vape-2', title: 'ASPIRE GOTEK X', price: 15, description: 'BLUE', image: blueVape},
-  {id: 'vape-3', title: 'ASPIRE GOTEK X', price: 15, description: 'PURPLE', image: purpleVape},
-  {id: 'vape-4', title: 'ASPIRE GOTEK X', price: 15, description: 'YELLOW', image: yellowVape},
-  {id: 'vape-5', title: 'ASPIRE GOTEK X', price: 15, description: 'GREEN', image: greenVape},
-  {id: 'vape-6', title: 'ASPIRE GOTEK X', price: 15, description: 'BLACK', image: blackVape}
+  {id: 'vape-1', title: 'ASPIRE GOTEK X RED', price: 15, description: 'E-cigarete', image: redVape},
+  {id: 'vape-2', title: 'ASPIRE GOTEK X BLUE', price: 15, description: 'E-cigarete', image: blueVape},
+  {id: 'vape-3', title: 'ASPIRE GOTEK X PURPLE', price: 15, description: 'E-cigarete', image: purpleVape},
+  {id: 'vape-4', title: 'ASPIRE GOTEK X YELLOW', price: 15, description: 'E-cigarete', image: yellowVape},
+  {id: 'vape-5', title: 'ASPIRE GOTEK X GREEN', price: 15, description: 'E-cigarete', image: greenVape},
+  {id: 'vape-6', title: 'ASPIRE GOTEK X BLACK', price: 15, description: 'E-cigarete', image: blackVape}
 ]
 
 export const cartridgeProducts = [
@@ -57,4 +57,23 @@ export const vapeContents = [
   {id: 'contents-1', text: '1 x Aspire Gotek X Pod Kit 13w '},
   {id: 'contents-2', text: '1 x Gotek X piepildīts kārtridžs ar Jūsu izvēlēto garšu'},
   {id: 'contents-3', text: '1 x Lietošanas instrukcija'}
+]
+
+export const cartridgeUsageInstructions = [
+  {id: 'instruction-1', text: 'Saņemot pasūtījumu, ievietojiet kārtridžu ierīcē un varat sākt lietot!'}
+]
+
+export const cartirdgeCharacteristics = [
+  {id: 'characteristic-1', text: 'MTL/RDTL Vaping'},
+  {id: 'characteristic-2', text: 'Saderīgs tikai ar Gotek X Vape komplektu'},
+  {id: 'characteristic-3', text: '4.5 ml neuzpildāms kārtridžs'},
+  {id: 'characteristic-4', text: 'Pretestība: 0.8 om'}
+]
+
+export const cartridgeContents = [
+  {id: 'contents-1', text: '1 x Gotek X kārtridžs, piepildīts ar šķidrumu'}
+]
+
+export const liquidContents = [
+  {id: 'contents-1', text: '10 ml tilpuma pudelīte'}
 ]

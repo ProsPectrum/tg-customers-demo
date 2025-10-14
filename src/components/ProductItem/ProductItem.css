@@ -7,6 +7,11 @@
     padding-bottom: 15px;
 }
 
+.title {
+    max-width: 130px;
+    text-align: center;
+}
+
 .img {
     display: flex;
     justify-content: center;

@@ -10,6 +10,18 @@
     font-family: 'OpenSans-Bold';
     border-bottom: 1px solid white;
     padding-bottom: 2px;
+    font-size: 16px;
+}
+
+.product-title {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.product-description {
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .image-container {
@@ -29,7 +41,7 @@
 }
 
 .list-item {
-    font-size: 14px;
+    font-size: 15px;
     margin-bottom: 4px;
 }
 
