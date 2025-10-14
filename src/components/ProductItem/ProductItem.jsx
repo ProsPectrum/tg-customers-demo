@@ -3,8 +3,11 @@ import './ProductItem.css'
 import Button from '../Button/Button'
 import { useTelegram } from "../../hooks/useTelegram";
 
-const ProductItem = ({product, className, pieces = 0, onAdd, onReduce}) => {
+import { useNavigate } from 'react-router-dom'
+
+const ProductItem = ({product, className, pieces = 0, onAdd, onReduce, usageInstructions, characteristics, contents}) => {
     const { onToggleButton } = useTelegram();
+    const navigate = useNavigate();
     const onAddHandler = () => {
         onAdd(product);
         onToggleButton();
@@ -14,16 +17,24 @@ const ProductItem = ({product, className, pieces = 0, onAdd, onReduce}) => {
         onReduce && onReduce(product);
         onToggleButton();
     }
+    const openInfo = () => {
+        navigate('/info', { state: {
+            image: product.image,
+            usageInstructions,
+            characteristics,
+            contents
+        }});
+    }
 
     return (
         <div className={"product "+ className}>
-            <div className="img">
+            <div className="img" onClick={openInfo}>
                 {pieces > 0 && (
                     <div className="badge">{pieces}</div>
                 )}
                 <img style={{width: 'auto', height: "100%"}} src={product.image} alt="" />
             </div>
-            <div className="title">{product.title}</div>
+            <div className="title" onClick={openInfo}>{product.title}</div>
             {/* <div className="description">{product.description}</div> */}
             <div className="price">{product.price}€</div>
             {pieces === 0 ? (

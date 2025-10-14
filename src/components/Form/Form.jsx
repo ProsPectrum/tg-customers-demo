@@ -53,6 +53,9 @@ const Form = () => {
             ))
           )}
         </div>
+        {userCart.length > 0 && (
+          <div style={{ marginTop: 8, fontWeight: 600 }}>Bezmaksas piegāde</div>
+        )}
         <h3>Ievadiet piegādes datus</h3>
         <select className="select" value={paymentType} onChange={onChangePaymentType}>
             <option value="1" disabled>Maksājuma veids</option>

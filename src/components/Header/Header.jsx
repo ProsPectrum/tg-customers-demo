@@ -3,7 +3,7 @@ import './Header.css'
 import Button from '../Button/Button'
 import { useTelegram } from '../../hooks/useTelegram'
 
-import Logo from '../../../public/ape-logo.png'
+import Logo from '../../logo/ape-logo.png'
 
 const Header = () => {
 

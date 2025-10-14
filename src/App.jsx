@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom'
 import ProductList from './components/ProductList/ProductList'
 import Form from './components/Form/Form'
 import Header from './components/Header/Header'
+import ProductInfo from './components/ProductInfo/ProductInfo'
 
 function App() {
   const { tg } = useTelegram();
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/form" element={<Form />} />
+        <Route path='/info' element={<ProductInfo />} />
       </Routes>
     </div>
   )
