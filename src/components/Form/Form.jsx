@@ -4,12 +4,15 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTelegram } from '../../hooks/useTelegram';
 import '../Button/Button.css';
+import CartItem from '../CartItem/CartItem';
+
+import redVape from '../../images/red-vape.png'
 
 const Form = () => {
   const { tg, onClose } = useTelegram();
 
   const location = useLocation();
-  const userCart = location.state?.userCart || [];
+  const [userCart, setUserCart] = useState(location.state?.userCart);
 
   const [deliveryTime, setDeliveryTime] = useState('1');
   const [paymentType, setPaymentType] = useState('1');
@@ -39,6 +42,26 @@ const Form = () => {
     setAdditionalInformation(e.target.value);
   }
 
+  const onAdd = (product) => {
+    setUserCart(prevCart => {
+        return prevCart.map(item =>
+          item.productId === product.productId
+            ? { ...item, pieces: item.pieces + 1 }
+            : item
+        );
+    });
+  }
+
+  const onReduce = (product) => {
+    setUserCart(prevCart => {
+        return prevCart.map(item =>
+          item.productId === product.productId
+            ? { ...item, pieces: item.pieces - 1 }
+            : item
+        );
+    });
+  }  
+
   return (
     <div className="form">
         <h3>Tavs iepirkumu grozs:</h3>
@@ -47,15 +70,11 @@ const Form = () => {
             <div>Tavs grozs ir tukšs</div>
           ) : (
             userCart.map(item => (
-              <div key={item.productId} style={{display: 'flex', flexDirection: 'row', gap: '7px'}}>
-                <img src={item.productImage} alt="" style={{width: '100px'}}/>
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                  <p>{item.productTitle}</p>
-                  <p>{item.productDescription}</p>
-                  <p>{item.pieces} gab.</p>
-                  <p>{item.productPrice*item.pieces}€</p>
-                </div>
-              </div>
+              <CartItem 
+                key={item.productId}
+                product={item}
+                onAdd={onAdd}
+                onReduce={onReduce} />
             ))
           )}
         </div>
