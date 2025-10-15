@@ -52,6 +52,7 @@ const ProductList = () => {
          productPrice: product.price, 
          productTitle: product.title,
          productDescription: product.description,
+         productImage: product.image,
          pieces: 1 
         }];
     });

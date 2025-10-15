@@ -47,8 +47,14 @@ const Form = () => {
             <div>Tavs grozs ir tukšs</div>
           ) : (
             userCart.map(item => (
-              <div key={item.productId}>
-                {item.productTitle} | {item.productDescription} — {item.pieces} gab. {item.productPrice*item.pieces}€
+              <div key={item.productId} style={{display: 'flex', flexDirection: 'row', gap: '7px'}}>
+                <img src={item.productImage} alt="" style={{width: '100px'}}/>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                  <p>{item.productTitle}</p>
+                  <p>{item.productDescription}</p>
+                  <p>{item.pieces} gab.</p>
+                  <p>{item.productPrice*item.pieces}€</p>
+                </div>
               </div>
             ))
           )}

@@ -60,7 +60,7 @@ export const vapeContents = [
 ]
 
 export const cartridgeUsageInstructions = [
-  {id: 'instruction-1', text: 'Saņemot pasūtījumu, ievietojiet kārtridžu ierīcē un varat sākt lietot!'}
+  {id: 'instruction-1', text: 'Saņemot pasūtījumu, ievietojiet kārtridžu GOTEK X ierīcē un varat sākt lietot!'}
 ]
 
 export const cartirdgeCharacteristics = [
