@@ -2,15 +2,9 @@ import React, { useState } from "react";
 import './CartItem.css'
 
 const CartItem = ({product, onAdd, onReduce}) => {
-    const onReduceHandler = (product) => {
-        onReduce(product)
-    }
-
-    const onAddHandler = (product) => {
-        onAdd(product)
-    }
 
     return (
+        (product.pieces > 0 && 
         <div className="item-container">
             <img src={product.productImage} alt="" className="cart-img"/>
             <div className="content-container">
@@ -19,9 +13,9 @@ const CartItem = ({product, onAdd, onReduce}) => {
                     <p className="content-description">{product.productDescription}</p>
                 </div>
                 <div className="content-button-container">
-                    <button className="qty-btn minus" onClick={onReduceHandler}>-</button>
+                    <button className="qty-btn minus" onClick={() => onReduce(product)}>-</button>
                     <p style={{fontFamily: 'OpenSans-Bold', fontSize: 17}}>{product.pieces}</p>
-                    <button className="qty-btn plus" onClick={onAddHandler}>+</button>
+                    <button className="qty-btn plus" onClick={() => onAdd(product)}>+</button>
                 </div>
                 {/* <p className="content-item">{product.pieces} gab.</p> */}
             </div>
@@ -29,7 +23,7 @@ const CartItem = ({product, onAdd, onReduce}) => {
                 <p>Kopumā:</p>
                 <p>{product.productPrice*product.pieces}€</p>
             </div>
-        </div>
+        </div>)
     )
 }
 
