@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo } from 'react'
 import './Form.css'
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTelegram } from '../../hooks/useTelegram';
 import '../Button/Button.css';
 import CartItem from '../CartItem/CartItem';
 
 const Form = () => {
+  const navigate = useNavigate();
   const { tg, onClose, onToggleButton } = useTelegram();
 
   const location = useLocation();
@@ -94,6 +95,11 @@ const Form = () => {
     setContinuePressed(true);
     onToggleButton();
   }
+
+  const handleBackToProductsPressed = () => {
+    setContinuePressed(false);
+    onToggleButton();
+  }
   
   const getTotalPrice = (cart = []) => {
     return cart.reduce((sum, item) => {
@@ -106,6 +112,7 @@ const Form = () => {
   return (
     <div className="form">
         {!continuePressed && <>
+        <button className="back-btn" onClick={() => navigate(-1)}>⟵ Atpakaļ</button>
         <h3>Tavs iepirkumu grozs:</h3>
         <div>
           {userCart.length === 0 ? (
@@ -147,6 +154,7 @@ const Form = () => {
         <button className='continue-button' onClick={() => handleContinuePressed()}>TURPINĀT</button>
         </>}
         {continuePressed && <>
+        <button className="show-products-btn" onClick={() => handleBackToProductsPressed()}>⟵ Atpakaļ</button>
         <h3>Ievadiet piegādes datus</h3>
         <select className={"select" + (errors.paymentType ? ' error-border' : '')} value={paymentType} onChange={onChangePaymentType}>
             <option value="1" disabled>Maksājuma veids</option>

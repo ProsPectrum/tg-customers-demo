@@ -80,3 +80,15 @@
     border-radius: 10px;
     font-family: 'OpenSans-Bold';
 }
+
+.show-products-btn, .back-btn {
+    width: fit-content;
+    border: none;
+    background: none;
+    color: white;
+    font-family: 'OpenSans-Bold';
+    border-bottom: 1px solid white;
+    padding-bottom: 2px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
