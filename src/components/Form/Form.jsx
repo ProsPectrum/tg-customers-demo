@@ -25,7 +25,6 @@ const Form = () => {
   });
 
   useEffect(() => {
-    onToggleButton();
     tg.MainButton.setText("Sūtīt");
     tg.MainButton.offClick && tg.MainButton.offClick(() => {});
     tg.MainButton.onClick(() => {
