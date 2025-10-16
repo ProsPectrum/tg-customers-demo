@@ -17,23 +17,52 @@ const Form = () => {
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [additionalInformation, setAdditionalInformation] = useState('');
 
+  const [errors, setErrors] = useState({
+    paymentType: '',
+    deliveryTime: '',
+    deliveryAddress: ''
+  });
+
   useEffect(() => {
     tg.MainButton.setText("Sūtīt");
+    tg.MainButton.offClick && tg.MainButton.offClick(() => {});
     tg.MainButton.onClick(() => {
+      const nextErrors = { paymentType: '', deliveryTime: '', deliveryAddress: '' };
+      if (paymentType === '1') nextErrors.paymentType = 'Jums ir jāizvēlas viena no opcijām';
+      if (deliveryTime === '1') nextErrors.deliveryTime = 'Jums ir jāizvēlas viena no opcijām';
+      const addressHasNumber = /\d/.test(deliveryAddress);
+      if (!deliveryAddress || !addressHasNumber) nextErrors.deliveryAddress = 'Ievadiet pareizu adresi';
+
+      setErrors(nextErrors);
+      const hasErrors = Object.values(nextErrors).some(Boolean);
+      if (!hasErrors) {
+        // Log payload for backend submission or debugging
+        const payload = {
+          paymentType,
+          deliveryTime,
+          deliveryAddress,
+          additionalInformation,
+          userCart
+        };
+        console.log('Submit payload:', payload);
         onClose();
+      }
     });
-  }, [])
+  }, [tg, paymentType, deliveryTime, deliveryAddress, onClose])
 
   const onChangeDeliveryTime = (e) => {
     setDeliveryTime(e.target.value);
+    setErrors(prev => ({ ...prev, deliveryTime: '' }));
   }
 
   const onChangePaymentType = (e) => {
     setPaymentType(e.target.value);
+    setErrors(prev => ({ ...prev, paymentType: '' }));
   }
 
   const onChangeDeliveryAddress = (e) => {
     setDeliveryAddress(e.target.value);
+    setErrors(prev => ({ ...prev, deliveryAddress: '' }));
   }
 
   const onChangeAdditionalInformation = (e) => {
@@ -71,7 +100,7 @@ const Form = () => {
   return (
     <div className="form">
         <h3>Tavs iepirkumu grozs:</h3>
-        <div>
+        {/* <div>
           {userCart.length === 0 ? (
             <div>Tavs grozs ir tukšs</div>
           ) : (
@@ -83,7 +112,7 @@ const Form = () => {
                 onReduce={onReduce} />
             ))
           )}
-        </div>
+        </div> */}
         <div className='total-container'>
             <div className='total-cart'>
               <p>Preču kopējā summa:</p>
@@ -109,20 +138,23 @@ const Form = () => {
             </div>
         </div>
         <h3>Ievadiet piegādes datus</h3>
-        <select className="select" value={paymentType} onChange={onChangePaymentType}>
+        <select className={"select" + (errors.paymentType ? ' error-border' : '')} value={paymentType} onChange={onChangePaymentType}>
             <option value="1" disabled>Maksājuma veids</option>
             <option value="2">Maksājums skaidrā tikšanās brīdī</option>
             <option value="3">Apmaksa ar karti tikšanās brīdī</option>
             <option value="4">Apmaksa ar kriptovalūtu tikšanās brīdī</option>
         </select>
-        <input type="text" placeholder="Adrese" className="input" value={deliveryAddress} onChange={onChangeDeliveryAddress} />
-        <select className="select" value={deliveryTime} onChange={onChangeDeliveryTime}>
+        {errors.paymentType && (<div className="error-text">{errors.paymentType}</div>)}
+        <input type="text" placeholder="Adrese" className={"input" + (errors.deliveryAddress ? ' error-border' : '')} value={deliveryAddress} onChange={onChangeDeliveryAddress} />
+        {errors.deliveryAddress && (<div className="error-text">{errors.deliveryAddress}</div>)}
+        <select className={"select" + (errors.deliveryTime ? ' error-border' : '')} value={deliveryTime} onChange={onChangeDeliveryTime}>
             <option value="1" disabled>Piegādes laiks</option>
             <option value="2">09:00-12:00</option>
             <option value="3">12:00-14:00</option>
             <option value="4">14:00-16:00</option>
             <option value="5">17:00-20:00</option>
         </select>
+        {errors.deliveryTime && (<div className="error-text">{errors.deliveryTime}</div>)}
         <input type="text" placeholder="Papildu informācija/lūgumi" className="input" value={additionalInformation} onChange={onChangeAdditionalInformation} />
     </div>
   )
