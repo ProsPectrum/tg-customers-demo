@@ -6,17 +6,11 @@ import { useTelegram } from '../../hooks/useTelegram';
 import '../Button/Button.css';
 import CartItem from '../CartItem/CartItem';
 
-import redVape from '../../images/red-vape.png'
-import blueVape from '../../images/blue-vape.png'
-
 const Form = () => {
   const { tg, onClose } = useTelegram();
 
   const location = useLocation();
-  // const userCart = location.state?.userCart
-  const [userCart, setUserCart] = useState([{productId: 'vape-1', productPrice: 15, productTitle: 'ASPIRE GOTEK X RED', productDescription: 'E-cigarete', productImage: redVape, pieces: 3},
-    {productId: 'vape-2', productPrice: 15, productTitle: 'ASPIRE GOTEK X BLUE', productDescription: 'E-cigarete', productImage: blueVape, pieces: 2}
-  ]);
+  const [userCart, setUserCart] = useState(location.state?.userCart);
 
   const [deliveryTime, setDeliveryTime] = useState('1');
   const [paymentType, setPaymentType] = useState('1');
