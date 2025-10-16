@@ -100,7 +100,7 @@ const Form = () => {
   return (
     <div className="form">
         <h3>Tavs iepirkumu grozs:</h3>
-        {/* <div>
+        <div>
           {userCart.length === 0 ? (
             <div>Tavs grozs ir tukšs</div>
           ) : (
@@ -112,7 +112,7 @@ const Form = () => {
                 onReduce={onReduce} />
             ))
           )}
-        </div> */}
+        </div>
         <div className='total-container'>
             <div className='total-cart'>
               <p>Preču kopējā summa:</p>
