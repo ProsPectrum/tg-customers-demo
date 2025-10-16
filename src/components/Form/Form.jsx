@@ -7,10 +7,11 @@ import '../Button/Button.css';
 import CartItem from '../CartItem/CartItem';
 
 const Form = () => {
-  const { tg, onClose } = useTelegram();
+  const { tg, onClose, onToggleButton } = useTelegram();
 
   const location = useLocation();
   const [userCart, setUserCart] = useState(location.state?.userCart);
+  const [continuePressed, setContinuePressed] = useState(false);
 
   const [deliveryTime, setDeliveryTime] = useState('1');
   const [paymentType, setPaymentType] = useState('1');
@@ -24,6 +25,7 @@ const Form = () => {
   });
 
   useEffect(() => {
+    onToggleButton();
     tg.MainButton.setText("Sūtīt");
     tg.MainButton.offClick && tg.MainButton.offClick(() => {});
     tg.MainButton.onClick(() => {
@@ -88,6 +90,11 @@ const Form = () => {
         );
     });
   }
+
+  const handleContinuePressed = () => {
+    setContinuePressed(true);
+    onToggleButton();
+  }
   
   const getTotalPrice = (cart = []) => {
     return cart.reduce((sum, item) => {
@@ -99,6 +106,7 @@ const Form = () => {
 
   return (
     <div className="form">
+        {!continuePressed && <>
         <h3>Tavs iepirkumu grozs:</h3>
         <div>
           {userCart.length === 0 ? (
@@ -137,6 +145,9 @@ const Form = () => {
               <p>{totalPrice}€</p>
             </div>
         </div>
+        <button className='continue-button' onClick={() => handleContinuePressed()}>TURPINĀT</button>
+        </>}
+        {continuePressed && <>
         <h3>Ievadiet piegādes datus</h3>
         <select className={"select" + (errors.paymentType ? ' error-border' : '')} value={paymentType} onChange={onChangePaymentType}>
             <option value="1" disabled>Maksājuma veids</option>
@@ -156,6 +167,7 @@ const Form = () => {
         </select>
         {errors.deliveryTime && (<div className="error-text">{errors.deliveryTime}</div>)}
         <input type="text" placeholder="Papildu informācija/lūgumi" className="input" value={additionalInformation} onChange={onChangeAdditionalInformation} />
+        </>}
     </div>
   )
 }
