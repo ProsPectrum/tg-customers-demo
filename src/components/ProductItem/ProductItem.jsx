@@ -36,7 +36,7 @@ const ProductItem = ({product, className, pieces = 0, onAdd, onReduce, usageInst
                 )}
                 <img style={{width: 'auto', height: "100%"}} src={product.image} alt="" />
             </div>
-            <div className="title" onClick={openInfo}>{product.title}</div>
+            <div className={"title " + (product.description === "E-cigarete" ? "width-controlled" : "")} onClick={openInfo}>{product.title}</div>
             {/* <div className="description">{product.description}</div> */}
             <div className="price">{product.price}€</div>
             {pieces === 0 ? (

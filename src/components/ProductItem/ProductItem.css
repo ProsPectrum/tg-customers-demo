@@ -8,8 +8,12 @@
 }
 
 .title {
-    max-width: 130px;
+    /* max-width: 130px; */
     text-align: center;
+}
+
+.title.width-controlled {
+    max-width: 130px;
 }
 
 .img {
