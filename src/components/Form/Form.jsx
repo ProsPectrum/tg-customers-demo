@@ -93,12 +93,12 @@ const Form = () => {
 
   const handleContinuePressed = () => {
     setContinuePressed(true);
-    onToggleButton();
+    tg.MainButton.show();
   }
 
   const handleBackToProductsPressed = () => {
     setContinuePressed(false);
-    onToggleButton();
+    tg.MainButton.hide();
   }
   
   const getTotalPrice = (cart = []) => {
