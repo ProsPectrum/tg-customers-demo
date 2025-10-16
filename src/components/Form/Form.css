@@ -1,3 +1,31 @@
+.total-container {
+    border-top: 1px solid #fff;
+    padding-top: 5px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+.total-cart, .total-shipping, .total-order {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2px;
+}
+
+.total-order {
+    margin-top: 5px;
+}
+
+.total-cart p,
+.total-shipping p {
+    font-family: 'OpenSans-Light';
+}
+
+.total-order p {
+    font-family: 'OpenSans-Bold';
+    font-size: 16px;
+}
+
 .form {
     display: flex;
     flex-direction: column;
