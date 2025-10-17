@@ -6,6 +6,7 @@ import ProductList from './components/ProductList/ProductList'
 import Form from './components/Form/Form'
 import Header from './components/Header/Header'
 import ProductInfo from './components/ProductInfo/ProductInfo'
+import { CartProvider } from './contexts/CartContext'
 
 function App() {
   const { tg } = useTelegram();
@@ -17,14 +18,16 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<ProductList />} />
-        <Route path="/form" element={<Form />} />
-        <Route path='/info' element={<ProductInfo />} />
-      </Routes>
-    </div>
+    <CartProvider>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<ProductList />} />
+          <Route path="/form" element={<Form />} />
+          <Route path='/info' element={<ProductInfo />} />
+        </Routes>
+      </div>
+    </CartProvider>
   )
 }
 

@@ -3,6 +3,7 @@ import { useTelegram } from '../../hooks/useTelegram'
 import { useNavigate } from 'react-router-dom'
 import ProductItem from '../ProductItem/ProductItem'
 import './ProductList.css'
+import { useCart } from '../../contexts/CartContext'
 
 import { vapeProducts, cartridgeProducts, liquidProducts } from '../../data/products'
 import { vapeUsageInstructions, vapeCharacteristics, vapeContents } from '../../data/products'
@@ -17,11 +18,11 @@ const getTotalPrice = (cart = []) => {
 
 const ProductList = () => {
   const [currentTab, setCurrentTab] = useState('vape');
-  const [cart, setCart] = useState([]);
+  const { cart, addToCart, reduceFromCart, getTotalPrice } = useCart();
   const { tg } = useTelegram();
   const navigate = useNavigate();
 
-  const totalPrice = useMemo(() => getTotalPrice(cart), [cart]);
+  const totalPrice = useMemo(() => getTotalPrice(cart), [cart, getTotalPrice]);
 
   useEffect(() => {
     if (!tg) return;
@@ -39,39 +40,11 @@ const ProductList = () => {
   }, [cart, totalPrice, tg, navigate]);
 
   const onAdd = (product) => {
-    setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.productId === product.id);
-      if (existingItem) {
-        return prevCart.map(item =>
-          item.productId === product.id
-            ? { ...item, pieces: item.pieces + 1 }
-            : item
-        );
-      }
-      return [...prevCart, 
-        { productId: product.id,
-         productPrice: product.price, 
-         productTitle: product.title,
-         productDescription: product.description,
-         productImage: product.image,
-         pieces: 1 
-        }];
-    });
+    addToCart(product);
   }
 
   const onReduce = (product) => {
-    setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.productId === product.id);
-      if (!existingItem) return prevCart;
-      if (existingItem.pieces <= 1) {
-        return prevCart.filter(item => item.productId !== product.id);
-      }
-      return prevCart.map(item =>
-        item.productId === product.id
-          ? { ...item, pieces: item.pieces - 1 }
-          : item
-      );
-    });
+    reduceFromCart(product);
   }
 
   return (
