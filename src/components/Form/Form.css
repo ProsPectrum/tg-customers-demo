@@ -1,7 +1,6 @@
 .total-container {
     border-top: 1px solid #fff;
     padding-top: 5px;
-    margin-bottom: 20px;
     margin-top: 15px;
 }
 
@@ -70,12 +69,12 @@
 
 .continue-button {
     position: relative;
-    bottom: 20px;
+    margin-top: 25px;
     left: 50%;
     transform: translateX(-50%);
     color: #000;
     background-color: #fff;
-    width: 90%;
+    width: 100%;
     padding: 15px 0;
     border: none;
     border-radius: 10px;
