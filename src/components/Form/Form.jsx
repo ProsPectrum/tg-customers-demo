@@ -46,7 +46,7 @@ const Form = () => {
           additionalInformation,
           userCart
         };
-        console.log('Submit payload:', payload);
+        tg.sendData(JSON.stringify(payload));
         onClose();
       } else {
         tg.MainButton.show();
