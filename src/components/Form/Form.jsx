@@ -9,7 +9,7 @@ import { useCart } from '../../contexts/CartContext';
 
 const Form = () => {
   const navigate = useNavigate();
-  const { tg, onClose, onToggleButton } = useTelegram();
+  const { tg, onClose } = useTelegram();
   const { cart: userCart, addToCart, reduceFromCart, getTotalPrice } = useCart();
 
   const [continuePressed, setContinuePressed] = useState(false);
@@ -48,6 +48,8 @@ const Form = () => {
         };
         console.log('Submit payload:', payload);
         onClose();
+      } else {
+        tg.MainButton.show();
       }
     });
   }, [tg, paymentType, deliveryTime, deliveryAddress, onClose])
