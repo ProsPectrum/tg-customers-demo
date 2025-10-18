@@ -12,7 +12,7 @@ const Form = () => {
   const { tg, onClose } = useTelegram();
   const { cart: userCart, addToCart, reduceFromCart, getTotalPrice } = useCart();
 
-  const [continuePressed, setContinuePressed] = useState(true);
+  const [continuePressed, setContinuePressed] = useState(false);
 
   const [deliveryTime, setDeliveryTime] = useState('1');
   const [paymentType, setPaymentType] = useState('1');
@@ -56,7 +56,7 @@ const Form = () => {
         tg.MainButton.show();
       }
     });
-  }, [tg, paymentType, deliveryTime, deliveryAddress, onClose])
+  }, [tg, paymentType, deliveryTime, deliveryAddress, deliveryCity, additionalInformation, userCart, onClose])
 
   const onChangeDeliveryTime = (e) => {
     setDeliveryTime(e.target.value);
