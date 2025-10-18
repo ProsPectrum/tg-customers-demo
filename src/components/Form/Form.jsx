@@ -12,28 +12,31 @@ const Form = () => {
   const { tg, onClose } = useTelegram();
   const { cart: userCart, addToCart, reduceFromCart, getTotalPrice } = useCart();
 
-  const [continuePressed, setContinuePressed] = useState(false);
+  const [continuePressed, setContinuePressed] = useState(true);
 
   const [deliveryTime, setDeliveryTime] = useState('1');
   const [paymentType, setPaymentType] = useState('1');
   const [deliveryAddress, setDeliveryAddress] = useState('');
+  const [deliveryCity, setDeliveryCity] = useState('');
   const [additionalInformation, setAdditionalInformation] = useState('');
 
   const [errors, setErrors] = useState({
     paymentType: '',
     deliveryTime: '',
-    deliveryAddress: ''
+    deliveryAddress: '',
+    deliveryCity: ''
   });
 
   useEffect(() => {
     tg.MainButton.setText("Sūtīt");
     tg.MainButton.offClick && tg.MainButton.offClick(() => {});
     tg.MainButton.onClick(() => {
-      const nextErrors = { paymentType: '', deliveryTime: '', deliveryAddress: '' };
+      const nextErrors = { paymentType: '', deliveryTime: '', deliveryAddress: '', deliveryCity: '' };
       if (paymentType === '1') nextErrors.paymentType = 'Jums ir jāizvēlas viena no opcijām';
       if (deliveryTime === '1') nextErrors.deliveryTime = 'Jums ir jāizvēlas viena no opcijām';
       const addressHasNumber = /\d/.test(deliveryAddress);
       if (!deliveryAddress || !addressHasNumber) nextErrors.deliveryAddress = 'Ievadiet pareizu adresi';
+      if (deliveryCity === '') nextErrors.deliveryCity = 'Ievadiet pilsētas nosaukumu';
 
       setErrors(nextErrors);
       const hasErrors = Object.values(nextErrors).some(Boolean);
@@ -43,6 +46,7 @@ const Form = () => {
           paymentType,
           deliveryTime,
           deliveryAddress,
+          deliveryCity,
           additionalInformation,
           userCart
         };
@@ -67,6 +71,11 @@ const Form = () => {
   const onChangeDeliveryAddress = (e) => {
     setDeliveryAddress(e.target.value);
     setErrors(prev => ({ ...prev, deliveryAddress: '' }));
+  }
+
+  const onChangeDeliveryCity = (e) => {
+    setDeliveryCity(e.target.value);
+    setErrors(prev => ({ ...prev, deliveryCity: '' }));
   }
 
   const onChangeAdditionalInformation = (e) => {
@@ -147,6 +156,8 @@ const Form = () => {
             <option value="4">Apmaksa ar kriptovalūtu tikšanās brīdī</option>
         </select>
         {errors.paymentType && (<div className="error-text">{errors.paymentType}</div>)}
+        <input type="text" placeholder="Pilsēta" className={"input" + (errors.deliveryCity ? ' error-border' : '')} value={deliveryCity} onChange={onChangeDeliveryCity} />
+        {errors.deliveryCity && (<div className="error-text">{errors.deliveryCity}</div>)}
         <input type="text" placeholder="Adrese" className={"input" + (errors.deliveryAddress ? ' error-border' : '')} value={deliveryAddress} onChange={onChangeDeliveryAddress} />
         {errors.deliveryAddress && (<div className="error-text">{errors.deliveryAddress}</div>)}
         <select className={"select" + (errors.deliveryTime ? ' error-border' : '')} value={deliveryTime} onChange={onChangeDeliveryTime}>
