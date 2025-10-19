@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react'
 import './Form.css'
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTelegram } from '../../hooks/useTelegram';
 import '../Button/Button.css';
 import CartItem from '../CartItem/CartItem';
@@ -14,7 +14,7 @@ const Form = () => {
 
   const [continuePressed, setContinuePressed] = useState(false);
 
-  const [deliveryTime, setDeliveryTime] = useState('1');
+  // const [deliveryTime, setDeliveryTime] = useState('1');
   const [paymentType, setPaymentType] = useState('1');
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [deliveryCity, setDeliveryCity] = useState('');
@@ -22,7 +22,6 @@ const Form = () => {
 
   const [errors, setErrors] = useState({
     paymentType: '',
-    deliveryTime: '',
     deliveryAddress: '',
     deliveryCity: ''
   });
@@ -33,7 +32,7 @@ const Form = () => {
     tg.MainButton.onClick(() => {
       const nextErrors = { paymentType: '', deliveryTime: '', deliveryAddress: '', deliveryCity: '' };
       if (paymentType === '1') nextErrors.paymentType = 'Jums ir jāizvēlas viena no opcijām';
-      if (deliveryTime === '1') nextErrors.deliveryTime = 'Jums ir jāizvēlas viena no opcijām';
+      // if (deliveryTime === '1') nextErrors.deliveryTime = 'Jums ir jāizvēlas viena no opcijām';
       const addressHasNumber = /\d/.test(deliveryAddress);
       if (!deliveryAddress || !addressHasNumber) nextErrors.deliveryAddress = 'Ievadiet pareizu adresi';
       if (deliveryCity === '') nextErrors.deliveryCity = 'Ievadiet pilsētas nosaukumu';
@@ -44,7 +43,6 @@ const Form = () => {
         // Log payload for backend submission or debugging
         const payload = {
           paymentType,
-          deliveryTime,
           deliveryAddress,
           deliveryCity,
           additionalInformation,
@@ -56,12 +54,12 @@ const Form = () => {
         tg.MainButton.show();
       }
     });
-  }, [tg, paymentType, deliveryTime, deliveryAddress, deliveryCity, additionalInformation, userCart, onClose])
+  }, [tg, paymentType, deliveryAddress, deliveryCity, additionalInformation, userCart, onClose])
 
-  const onChangeDeliveryTime = (e) => {
-    setDeliveryTime(e.target.value);
-    setErrors(prev => ({ ...prev, deliveryTime: '' }));
-  }
+  // const onChangeDeliveryTime = (e) => {
+  //   setDeliveryTime(e.target.value);
+  //   setErrors(prev => ({ ...prev, deliveryTime: '' }));
+  // }
 
   const onChangePaymentType = (e) => {
     setPaymentType(e.target.value);
@@ -160,14 +158,14 @@ const Form = () => {
         {errors.deliveryCity && (<div className="error-text">{errors.deliveryCity}</div>)}
         <input type="text" placeholder="Adrese" className={"input" + (errors.deliveryAddress ? ' error-border' : '')} value={deliveryAddress} onChange={onChangeDeliveryAddress} />
         {errors.deliveryAddress && (<div className="error-text">{errors.deliveryAddress}</div>)}
-        <select className={"select" + (errors.deliveryTime ? ' error-border' : '')} value={deliveryTime} onChange={onChangeDeliveryTime}>
+        {/* <select className={"select" + (errors.deliveryTime ? ' error-border' : '')} value={deliveryTime} onChange={onChangeDeliveryTime}>
             <option value="1" disabled>Piegādes laiks</option>
             <option value="2">09:00-12:00</option>
             <option value="3">12:00-14:00</option>
             <option value="4">14:00-16:00</option>
             <option value="5">17:00-20:00</option>
         </select>
-        {errors.deliveryTime && (<div className="error-text">{errors.deliveryTime}</div>)}
+        {errors.deliveryTime && (<div className="error-text">{errors.deliveryTime}</div>)} */}
         <input type="text" placeholder="Papildu informācija/lūgumi" className="input" value={additionalInformation} onChange={onChangeAdditionalInformation} />
         </>}
     </div>
