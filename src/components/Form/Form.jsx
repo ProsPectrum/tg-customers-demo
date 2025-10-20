@@ -49,7 +49,8 @@ const Form = () => {
           userCart
         };
         tg.sendData(JSON.stringify(payload));
-        onClose();
+        tg.MainButton.offClick();
+        setTimeout(() => onClose(), 200);
       } else {
         tg.MainButton.show();
       }
