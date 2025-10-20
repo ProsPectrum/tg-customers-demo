@@ -26,6 +26,18 @@ const Form = () => {
     deliveryCity: ''
   });
 
+  const sendOrderData = () => {
+    const payload = {
+      paymentType,
+      deliveryAddress,
+      deliveryCity,
+      additionalInformation,
+      userCart
+    };
+
+    tg.sendData(JSON.stringify(payload));
+  }
+
   useEffect(() => {
     tg.MainButton.setText("Sūtīt");
     tg.MainButton.offClick && tg.MainButton.offClick(() => {});
@@ -40,15 +52,8 @@ const Form = () => {
       setErrors(nextErrors);
       const hasErrors = Object.values(nextErrors).some(Boolean);
       if (!hasErrors) {
-        // Log payload for backend submission or debugging
-        const payload = {
-          paymentType,
-          deliveryAddress,
-          deliveryCity,
-          additionalInformation,
-          userCart
-        };
-        tg.sendData(JSON.stringify(payload));
+        sendOrderData();
+        return () => tg.MainButton.offClick();
       } else {
         tg.MainButton.show();
       }
@@ -171,4 +176,4 @@ const Form = () => {
   )
 }
 
-export default Form
+export default Form;
