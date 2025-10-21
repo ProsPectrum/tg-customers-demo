@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import './Form.css'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTelegram } from '../../hooks/useTelegram';
 import '../Button/Button.css';
@@ -11,6 +11,8 @@ const Form = () => {
   const navigate = useNavigate();
   const { tg, onClose } = useTelegram();
   const { cart: userCart, addToCart, reduceFromCart, getTotalPrice } = useCart();
+
+  const additionalRef = useRef(null);
 
   const [continuePressed, setContinuePressed] = useState(false);
 
@@ -27,11 +29,13 @@ const Form = () => {
   });
 
   const sendOrderData = () => {
+    const actualAdditional = additionalRef.current ? additionalRef.current.value : additionalInformation;
+
     const payload = {
       paymentType,
       deliveryAddress,
       deliveryCity,
-      additionalInformation,
+      additionalInformation: actualAdditional,
       userCart
     };
 
@@ -58,7 +62,7 @@ const Form = () => {
         tg.MainButton.show();
       }
     });
-  }, [tg, paymentType, deliveryAddress, deliveryCity, additionalInformation, userCart, onClose])
+  }, [tg, paymentType, deliveryAddress, deliveryCity, userCart, onClose])
 
   // const onChangeDeliveryTime = (e) => {
   //   setDeliveryTime(e.target.value);
