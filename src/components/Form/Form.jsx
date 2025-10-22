@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import './Form.css'
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTelegram } from '../../hooks/useTelegram';
 import '../Button/Button.css';
@@ -11,8 +11,6 @@ const Form = () => {
   const navigate = useNavigate();
   const { tg, onClose } = useTelegram();
   const { cart: userCart, addToCart, reduceFromCart, getTotalPrice } = useCart();
-
-  const additionalRef = useRef(null);
 
   const [continuePressed, setContinuePressed] = useState(false);
 
@@ -28,20 +26,6 @@ const Form = () => {
     deliveryCity: ''
   });
 
-  const sendOrderData = () => {
-    const actualAdditional = additionalRef.current ? additionalRef.current.value : additionalInformation;
-
-    const payload = {
-      paymentType,
-      deliveryAddress,
-      deliveryCity,
-      additionalInformation: actualAdditional,
-      userCart
-    };
-
-    tg.sendData(JSON.stringify(payload));
-  }
-
   useEffect(() => {
     tg.MainButton.setText("Sūtīt");
     tg.MainButton.offClick && tg.MainButton.offClick(() => {});
@@ -56,13 +40,22 @@ const Form = () => {
       setErrors(nextErrors);
       const hasErrors = Object.values(nextErrors).some(Boolean);
       if (!hasErrors) {
-        sendOrderData();
-        return () => tg.MainButton.offClick();
+        const payload = {
+          paymentType,
+          deliveryAddress,
+          deliveryCity,
+          additionalInformation,
+          userCart
+        };
+        tg.sendData(JSON.stringify(payload));
+        
+        tg.MainButton.offClick();
+        setTimeout(() => onClose(), 200);
       } else {
         tg.MainButton.show();
       }
     });
-  }, [tg, paymentType, deliveryAddress, deliveryCity, userCart, onClose])
+  }, [tg, paymentType, deliveryAddress, deliveryCity, additionalInformation, userCart, onClose])
 
   // const onChangeDeliveryTime = (e) => {
   //   setDeliveryTime(e.target.value);
@@ -88,11 +81,25 @@ const Form = () => {
     setAdditionalInformation(e.target.value);
   }
 
-  const onAdd = (product) => {
+  const onAdd = (cartItem) => {
+    const product = {
+      id: cartItem.productId,
+      title: cartItem.productTitle,
+      price: cartItem.productPrice,
+      description: cartItem.productDescription,
+      image: cartItem.productImage
+    };
     addToCart(product);
   }
 
-  const onReduce = (product) => {
+  const onReduce = (cartItem) => {
+    const product = {
+      id: cartItem.productId,
+      title: cartItem.productTitle,
+      price: cartItem.productPrice,
+      description: cartItem.productDescription,
+      image: cartItem.productImage
+    };
     reduceFromCart(product);
   }
 
@@ -105,7 +112,7 @@ const Form = () => {
     setContinuePressed(false);
     tg.MainButton.hide();
   }
-  
+
   const totalPrice = useMemo(() => getTotalPrice(userCart), [userCart, getTotalPrice]);
 
   return (
